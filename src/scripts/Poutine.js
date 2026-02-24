@@ -1,7 +1,5 @@
 import Icons from './utils/Icons.js';
 
-// La ligne suivante devrait être au TOUT début du init() du Main
-
 export default class Poutine {
   constructor(poutine) {
     Icons.load();
@@ -40,7 +38,6 @@ export default class Poutine {
         btn.classList.remove('is-active');
       }
     }
-    // console.log(isClickedAgain);
 
     if (isRetourEtatNormal == false) {
       e.currentTarget.classList.add('is-active');
@@ -51,8 +48,8 @@ export default class Poutine {
   }
 
   updatePhoto() {
-    // /*avant bonus */ const image = this.element.querySelector('.poutine__image');
-    // console.log(image);
+    // /*avant bonus  const image = this.element.querySelector('.poutine__image');
+    // console.log(image);*/
     if (this.selectedType != '') {
       this.image.classList.add('is-active');
       this.image.src = `assets/images/${this.selectedType}.png`;

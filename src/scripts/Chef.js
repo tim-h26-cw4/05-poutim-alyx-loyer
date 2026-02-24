@@ -1,6 +1,5 @@
 import Icons from './utils/Icons.js';
 import Poutine from './Poutine.js';
-// La ligne suivante devrait être au TOUT début du init() du Main
 
 export default class Chef {
   constructor(chef) {
