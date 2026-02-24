@@ -8,6 +8,7 @@ export default class Poutine {
     this.element = poutine;
     this.types = this.element.querySelectorAll('.button');
     this.selectedType = '';
+    this.image = this.element.querySelector('.poutine__image');
     this.init();
   }
 
@@ -21,22 +22,44 @@ export default class Poutine {
   }
 
   selectType(e) {
+    let isRetourEtatNormal = false;
+
     for (let i = 0; i < this.types.length; i++) {
       const btn = this.types[i];
 
-      btn.classList.remove('is-active');
-    }
+      if (
+        e.currentTarget.classList.contains('is-active') &&
+        isRetourEtatNormal != true
+      ) {
+        btn.classList.remove('is-active');
 
-    e.currentTarget.classList.add('is-active');
-    this.selectedType = e.currentTarget.innerText;
-    // console.log(this.selectedType);
-    this.updatePhoto();
+        this.selectedType = '';
+        isRetourEtatNormal = !isRetourEtatNormal;
+        this.updatePhoto();
+      } else {
+        btn.classList.remove('is-active');
+      }
+    }
+    // console.log(isClickedAgain);
+
+    if (isRetourEtatNormal == false) {
+      e.currentTarget.classList.add('is-active');
+      this.selectedType = e.currentTarget.innerText;
+
+      this.updatePhoto();
+    }
   }
 
   updatePhoto() {
-    const image = this.element.querySelector('.poutine__image');
+    // /*avant bonus */ const image = this.element.querySelector('.poutine__image');
     // console.log(image);
-    image.classList.add('is-active');
-    image.src = `assets/images/${this.selectedType}.png`;
+    if (this.selectedType != '') {
+      this.image.classList.add('is-active');
+      this.image.src = `assets/images/${this.selectedType}.png`;
+    } else {
+      // console.log('remove');
+      this.image.classList.remove('is-active');
+      this.image.src = `assets/images/poutine.png`;
+    }
   }
 }

@@ -11,6 +11,9 @@ export default class Chef {
     // console.log(this.menu);
     this.container = this.element.querySelector('.chef__order');
     // console.log(this.container);
+
+    //Pour Bonus
+    this.nbPoutine = 0;
     this.init();
   }
 
@@ -34,18 +37,51 @@ export default class Chef {
 
   sendOrder() {
     this.container.innerText = '';
-    console.log('odre envoyer');
-    let nbPoutine = 0;
+    this.nbPoutine = 0;
+    /* Contenu avant Bonus
+    // console.log('odre envoyer');
+    // let nbPoutine = 0;
+    // for (let i = 0; i < this.menu.length; i++) {
+    //   const poutine = this.menu[i];
+    //   // console.log(poutine.selectedType);
+    //   if (poutine.selectedType != '') {
+    //     nbPoutine++;
+    //   }
+    // }
+    // const p = document.createElement('p');
+
+    // p.innerText = `Nombre total de poutine(s): ${nbPoutine}`;
+    // this.container.appendChild(p);*/
+    this.createHeader();
+    this.createListItem();
+    this.createFooter();
+  }
+
+  //Bonus
+  createHeader() {
+    const h2 = document.createElement('h2');
+    h2.innerText = 'Voici le résumé de votre commande :';
+    this.container.appendChild(h2);
+  }
+
+  createListItem() {
     for (let i = 0; i < this.menu.length; i++) {
       const poutine = this.menu[i];
-      // console.log(poutine.selectedType);
+
       if (poutine.selectedType != '') {
-        nbPoutine++;
+        this.nbPoutine++;
+
+        const p = document.createElement('p');
+        p.innerText = `Poutine #${this.nbPoutine} - ${poutine.selectedType}`;
+        this.container.appendChild(p);
       }
     }
-    const p = document.createElement('p');
+    // console.log(this.nbPoutine);
+  }
 
-    p.innerText = `Nombre total de poutine(s): ${nbPoutine}`;
+  createFooter() {
+    const p = document.createElement('p');
+    p.innerText = `Nombre total de poutine(s): ${this.nbPoutine}`;
     this.container.appendChild(p);
   }
 }
