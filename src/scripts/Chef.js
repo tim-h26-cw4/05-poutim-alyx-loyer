@@ -7,7 +7,7 @@ export default class Chef {
     Icons.load();
     this.element = chef;
     // console.log(this.element);
-    this.menu = this.element.querySelectorAll('.poutine');
+    this.menu = [];
     // console.log(this.menu);
     this.container = this.element.querySelector('.chef__order');
     // console.log(this.container);
@@ -16,17 +16,16 @@ export default class Chef {
 
   init() {
     // console.log('Chef est instancié');
+    const poutines = this.element.querySelectorAll('.poutine');
 
-    for (let i = 0; i < this.menu.length; i++) {
-      const poutine = this.menu[i];
+    for (let i = 0; i < poutines.length; i++) {
+      const poutine = poutines[i];
+      // console.log(poutine);
 
       const instance = new Poutine(poutine);
-      console.log(poutine);
-
       this.menu.push(instance);
     }
-
-    console.log(this.menu);
+    // console.log(this.menu);
 
     const confirmCommande = this.element.querySelector('.button-secondary');
     confirmCommande.addEventListener('click', this.sendOrder.bind(this));
@@ -34,6 +33,19 @@ export default class Chef {
   }
 
   sendOrder() {
+    this.container.innerText = '';
     console.log('odre envoyer');
+    let nbPoutine = 0;
+    for (let i = 0; i < this.menu.length; i++) {
+      const poutine = this.menu[i];
+      // console.log(poutine.selectedType);
+      if (poutine.selectedType != '') {
+        nbPoutine++;
+      }
+    }
+    const p = document.createElement('p');
+
+    p.innerText = `Nombre total de poutine(s): ${nbPoutine}`;
+    this.container.appendChild(p);
   }
 }
