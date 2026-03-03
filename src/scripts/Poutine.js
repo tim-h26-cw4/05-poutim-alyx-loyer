@@ -25,6 +25,7 @@ export default class Poutine {
     for (let i = 0; i < this.types.length; i++) {
       const btn = this.types[i];
 
+      //vérifie si le type selectionné est le même type qui est actif
       if (
         e.currentTarget.classList.contains('is-active') &&
         isRetourEtatNormal != true
@@ -39,6 +40,7 @@ export default class Poutine {
       }
     }
 
+    //Ajuste le type selectionné
     if (isRetourEtatNormal == false) {
       e.currentTarget.classList.add('is-active');
       this.selectedType = e.currentTarget.innerText;

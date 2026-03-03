@@ -12,6 +12,7 @@ class Main {
 
     const chefs = document.querySelectorAll('.chef');
 
+    //instance de classe Chef
     for (let i = 0; i < chefs.length; i++) {
       const chef = chefs[i];
 

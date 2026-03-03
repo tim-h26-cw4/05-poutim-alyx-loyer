@@ -4,10 +4,13 @@ import Poutine from './Poutine.js';
 export default class Chef {
   constructor(chef) {
     Icons.load();
+
     this.element = chef;
     // console.log(this.element);
+
     this.menu = [];
     // console.log(this.menu);
+
     this.container = this.element.querySelector('.chef__order');
     // console.log(this.container);
 
@@ -20,21 +23,24 @@ export default class Chef {
     // console.log('Chef est instancié');
     const poutines = this.element.querySelectorAll('.poutine');
 
+    //instance de poutine
     for (let i = 0; i < poutines.length; i++) {
       const poutine = poutines[i];
       // console.log(poutine);
 
+      //chaque instance est rangé dans le tableau menu
       const instance = new Poutine(poutine);
       this.menu.push(instance);
     }
     // console.log(this.menu);
 
+    //BTN de confirmation de commande
     const confirmCommande = this.element.querySelector('.button-secondary');
     confirmCommande.addEventListener('click', this.sendOrder.bind(this));
-    console.log();
   }
 
   sendOrder() {
+    //réinitialisation du nb de poutine et du texte qui nomme le nombre de poutine
     this.container.innerText = '';
     this.nbPoutine = 0;
     /* Contenu avant Bonus
